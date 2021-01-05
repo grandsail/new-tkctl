@@ -1,0 +1,20 @@
+{
+  "name": "tkctl",
+  "bin": {
+    "tkctl": "index.js"
+  },
+  "version": "0.1.0",
+  "description": "A new tkctl tool based on Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "js-yaml": "^3.14.1",
+    "package.json": "^2.0.1",
+    "shelljs": "^0.8.4",
+    "yargs": "^16.2.0"
+  },
+  "author": "Evan",
+  "license": "Apache-2.0"
+}
