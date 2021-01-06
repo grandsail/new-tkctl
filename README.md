@@ -1,4 +1,4 @@
-# new-tkctl-nodejs
+# new-tkctl
 
 ### How to use
 
@@ -66,7 +66,7 @@ $ tkctl use -n foo -t demo_cluster
 Context set: [ NameSpace = foo ], [ TidbCluster = demo_cluster ].
 ```
 
-For now, this program store the context parameters with a file. Test result indicates that R&W operations consume 1~3 ms. And considering the delay of communications between servers, all `kubectl` commands consumes 100~200 ms. The solution using files is acceptable for now.
+For now, this program store the context parameters with a file. Test result indicates that R&W operations consume `1~3` ms. And considering the delay of communications between servers, all `kubectl` commands consumes `100~200` ms. The solution using files is acceptable for now.
 
 ### tkctl reset 
 
