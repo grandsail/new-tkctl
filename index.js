@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-var name = process.argv[2];
 var shell = require("shelljs");
-var yaml = require("js-yaml");
 var fs = require("fs");
 
 const TKCTL_VERSION = "v0.1.0"
@@ -66,14 +64,14 @@ var argv = require('yargs')
             .argv;
 
         var context = CONTEXT;
-        fs.access(__dirname + 'new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+        fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
             if (err) {
                 var raw_context = JSON.stringify(CONTEXT);
-                fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+                fs.writeFileSync('./new_tkctl_context.json', raw_context);
                 return 0;
             }
             else {
-                var raw_context = fs.readFileSync(__dirname + 'new_tkctl_context.json');
+                var raw_context = fs.readFileSync('./new_tkctl_context.json');
                 context = JSON.parse(raw_context);
             }
         })
@@ -87,19 +85,19 @@ var argv = require('yargs')
         }
         console.log("New context: [ NameSpace: " + context.NameSpace + " ], [ TidbCluster: " + context.TidbCluster + " ].");
         var raw_context = JSON.stringify(context);
-        fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+        fs.writeFileSync('./new_tkctl_context.json', raw_context);
         process.exit(0)
     })
     .command("reset", "Reset the TiDB cluster and Namespace context settings.", function (yargs) {
         var old_context = CONTEXT;
-        fs.access(__dirname + 'new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+        fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
             if (err) {
                 var raw_context = JSON.stringify(CONTEXT);
-                fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+                fs.writeFileSync('./new_tkctl_context.json', raw_context);
                 return 0;
             }
             else {
-                var raw_context = fs.readFileSync(__dirname + 'new_tkctl_context.json');
+                var raw_context = fs.readFileSync('./new_tkctl_context.json');
                 old_context = JSON.parse(raw_context);
             }
         })
@@ -107,9 +105,18 @@ var argv = require('yargs')
         old_tidbcluster = old_context.TidbCluster;
 
         var raw_context = JSON.stringify(CONTEXT);
-        fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+        fs.writeFileSync('./new_tkctl_context.json', raw_context);
         console.log("Context reset: [ NameSpace: " + old_namespace + " -> " + CONTEXT.NameSpace + " ], [ TidbCluster: " + old_tidbcluster + " -> " + CONTEXT.TidbCluster + " ].");
         process.exit(0)
+    })
+    .command("clean", "Clean the json file to store context.", function (yargs) {
+        shell.exec("rm -f ./new_tkctl_context.json");
+        fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+            if (err) {
+                console.log("Context json file cleaned.")
+                return 0;
+            }
+        })
     })
     .command("list", "Show tidb clusters in named namespaces.", function (yargs) {
         var argv = yargs.reset()
@@ -135,14 +142,14 @@ var argv = require('yargs')
         }
         else {
             var context = CONTEXT;
-            fs.access(__dirname + 'new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+            fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
                 if (err) {
                     var raw_context = JSON.stringify(CONTEXT);
-                    fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+                    fs.writeFileSync('./new_tkctl_context.json', raw_context);
                     return 0;
                 }
                 else {
-                    var raw_context = fs.readFileSync(__dirname + 'new_tkctl_context.json');
+                    var raw_context = fs.readFileSync('./new_tkctl_context.json');
                     context = JSON.parse(raw_context);
                 }
             })
@@ -172,14 +179,14 @@ var argv = require('yargs')
         }
         else {
             var context = CONTEXT;
-            fs.access(__dirname + 'new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+            fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
                 if (err) {
                     var raw_context = JSON.stringify(CONTEXT);
-                    fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+                    fs.writeFileSync('./new_tkctl_context.json', raw_context);
                     return 0;
                 }
                 else {
-                    var raw_context = fs.readFileSync(__dirname + 'new_tkctl_context.json');
+                    var raw_context = fs.readFileSync('./new_tkctl_context.json');
                     context = JSON.parse(raw_context);
                 }
             })
@@ -265,14 +272,14 @@ var argv = require('yargs')
         }
         else {
             var context = CONTEXT;
-            fs.access(__dirname + 'new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
+            fs.access('./new_tkctl_context.json', fs.constants.F_OK | fs.constants.W_OK, (err) => {
                 if (err) {
                     var raw_context = JSON.stringify(CONTEXT);
-                    fs.writeFileSync(__dirname + '/new_tkctl_context.json', raw_context);
+                    fs.writeFileSync('./new_tkctl_context.json', raw_context);
                     return 0;
                 }
                 else {
-                    var raw_context = fs.readFileSync(__dirname + 'new_tkctl_context.json');
+                    var raw_context = fs.readFileSync('./new_tkctl_context.json');
                     context = JSON.parse(raw_context);
                 }
             })

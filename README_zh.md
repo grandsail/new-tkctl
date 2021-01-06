@@ -20,6 +20,7 @@ PS: 可以参考[如何在CentOS 7安装Node.js和npm](https://linuxize.com/post
 | version         | 查看 `tkctl` 和 `tidb-operator` 的版本 |
 | use             | 指定上下文使用的 `TiDB` 集群          |
 | reset           | 清空目前设置的上下文              |
+| clean           | 删除存储上下文使用的json文件              |
 | list            | 查看 `Kubernetes` 集群中的 `TiDB` 集群           |
 | info            | 查看 `TiDB` 集群的概要信息            |
 | get [component] | 获取 `TiDB` 集群中组件的详细信息    |
@@ -72,9 +73,18 @@ Context set: [ NameSpace = foo ], [ TidbCluster = demo_cluster ].
 
 该命令用于清空目前设置的上下文信息
 
-```bash
+```
 $ tkctl reset
 Context reset: [ NameSpace = default ], [ TidbCluster = default ].
+```
+
+### tkctl reset 
+
+删除存储上下文时使用的文件
+
+```
+$ tkctl clean
+Context json file cleaned.
 ```
 
 ### tkctl list

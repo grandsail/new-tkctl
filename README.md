@@ -19,6 +19,7 @@ This `tkctl` tool is realized with Node.js, which is a refactoration of the old 
 | version         | View the version of `tkctl` and `tidb-operator` |
 | use             | Set the `TiDB` cluster context to use        |
 | reset           | Reset the `TiDB` cluster context to default |
+| clean           | Clean the json file to store `TiDB` cluster context |
 | list            | List all `TiDB` clusters installed in `Kubernetes` cluster |
 | info            | List the overall information of a `TiDB` cluster |
 | get [component] | Get more detailed information of `TiDB` components |
@@ -72,9 +73,17 @@ For now, this program store the context parameters with a file. Test result indi
 Reset the `TiDB` cluster context to default.
 
 ```
-bash
 $ tkctl reset
 Context reset: [ NameSpace = default ], [ TidbCluster = default ].
+```
+
+### tkctl clean 
+
+Clean the json file to store `TiDB` cluster context.
+
+```
+$ tkctl clean
+Context json file cleaned.
 ```
 
 ### tkctl list
